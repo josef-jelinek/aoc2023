@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -13,41 +14,56 @@ func main() {
 		fmt.Printf("Expected problem ID (e.g \"1-1\", \"1-2\", \"2-1\", ...) and file name\n")
 		os.Exit(1)
 	}
-	var err error
-	switch os.Args[1] {
-	case "1-1":
-		err = solveDay1Part1(os.Args[2])
-	case "1-2":
-		err = solveDay1Part2(os.Args[2])
-	case "2-1":
-		err = solveDay2Part1(os.Args[2])
-	case "2-2":
-		err = solveDay2Part2(os.Args[2])
-	case "3-1":
-		err = solveDay3Part1(os.Args[2])
-	case "3-2":
-		err = solveDay3Part2(os.Args[2])
-	case "4-1":
-		err = solveDay4Part1(os.Args[2])
-	case "4-2":
-		err = solveDay4Part2(os.Args[2])
-	default:
-		fmt.Printf("Problem ID not valid: %q\n", os.Args[1])
-		os.Exit(1)
-	}
-	if err != nil {
+	if err := solve(os.Args[1], os.Args[2]); err != nil {
 		fmt.Printf("Error: %v\n", err)
+		os.Exit(1)
 	}
 }
 
-func solveDay1Part1(filename string) error {
-	fmt.Println("Day 1, Problem 1")
-	data, err := fileAsString(filename)
+func solve(id, filename string) error {
+	f, err := os.Open(filename)
 	if err != nil {
 		return err
 	}
+	b, err := io.ReadAll(f)
+	if err != nil {
+		return err
+	}
+	input := string(b)
+	switch os.Args[1] {
+	case "1-1":
+		solveDay1Part1(input)
+	case "1-2":
+		solveDay1Part2(input)
+	case "2-1":
+		solveDay2Part1(input)
+	case "2-2":
+		solveDay2Part2(input)
+	case "3-1":
+		solveDay3Part1(input)
+	case "3-2":
+		solveDay3Part2(input)
+	case "4-1":
+		solveDay4Part1(input)
+	case "4-2":
+		solveDay4Part2(input)
+	case "5-1":
+		solveDay5Part1(input)
+	case "5-2":
+		solveDay5Part2(input)
+	case "6-1":
+		solveDay6Part1(input)
+	case "6-2":
+		solveDay6Part2(input)
+	default:
+		return fmt.Errorf("invalid ID: %q", id)
+	}
+	return nil
+}
+
+func solveDay1Part1(input string) {
 	sum := 0
-	for _, s := range strings.Split(data, "\n") {
+	for _, s := range strings.Split(input, "\n") {
 		var d10, d1 int
 		d10Set := false
 		for _, r := range s {
@@ -61,18 +77,12 @@ func solveDay1Part1(filename string) error {
 		}
 		sum += d10 + d1
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Printf("Day 1, Problem 1, Answer: %d\n", sum)
 }
 
-func solveDay1Part2(filename string) error {
-	fmt.Println("Day 1, Problem 2")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
+func solveDay1Part2(input string) {
 	sum := 0
-	for _, s := range strings.Split(data, "\n") {
+	for _, s := range strings.Split(input, "\n") {
 		var d10, d1 int
 		d10Set := false
 		for i, r := range s {
@@ -109,16 +119,10 @@ func solveDay1Part2(filename string) error {
 		}
 		sum += d10 + d1
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Printf("Day 1, Problem 2, Answer: %d\n", sum)
 }
 
-func solveDay2Part1(filename string) error {
-	fmt.Println("Day 2, Problem 1")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
+func solveDay2Part1(input string) {
 	maxByColor := map[string]int{
 		"red":   12,
 		"green": 13,
@@ -126,22 +130,16 @@ func solveDay2Part1(filename string) error {
 	}
 	sum := 0
 gameLoop:
-	for _, s := range strings.Split(data, "\n") {
+	for _, s := range strings.Split(input, "\n") {
 		name, spec, ok := strings.Cut(s, ": ")
 		if !ok {
 			continue
 		}
-		id, err := strconv.Atoi(name[5:])
-		if err != nil {
-			return err
-		}
+		id, _ := strconv.Atoi(name[5:])
 		for _, draw := range strings.Split(spec, "; ") {
 			for _, cube := range strings.Split(draw, ", ") {
 				count, color, _ := strings.Cut(cube, " ")
-				n, err := strconv.Atoi(count)
-				if err != nil {
-					return err
-				}
+				n, _ := strconv.Atoi(count)
 				if n > maxByColor[color] {
 					continue gameLoop
 				}
@@ -149,18 +147,12 @@ gameLoop:
 		}
 		sum += id
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Println("Day 2, Problem 1, Answer: %d\n", sum)
 }
 
-func solveDay2Part2(filename string) error {
-	fmt.Println("Day 2, Problem 2")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
+func solveDay2Part2(input string) {
 	sum := 0
-	for _, s := range strings.Split(data, "\n") {
+	for _, s := range strings.Split(input, "\n") {
 		_, spec, ok := strings.Cut(s, ": ")
 		if !ok {
 			continue
@@ -169,10 +161,7 @@ func solveDay2Part2(filename string) error {
 		for _, draw := range strings.Split(spec, "; ") {
 			for _, cube := range strings.Split(draw, ", ") {
 				count, color, _ := strings.Cut(cube, " ")
-				n, err := strconv.Atoi(count)
-				if err != nil {
-					return err
-				}
+				n, _ := strconv.Atoi(count)
 				minByColor[color] = max(minByColor[color], n)
 			}
 		}
@@ -182,17 +171,11 @@ func solveDay2Part2(filename string) error {
 		}
 		sum += power
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Printf("Day 2, Problem 2, Answer: %d\n", sum)
 }
 
-func solveDay3Part1(filename string) error {
-	fmt.Println("Day 3, Problem 1")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
-	lines := strings.Split(data, "\n")
+func solveDay3Part1(input string) {
+	lines := strings.Split(input, "\n")
 
 	isDigit := func(row, col int) bool {
 		if row < 0 || row >= len(lines) || col < 0 || col >= len(lines[row]) {
@@ -235,17 +218,11 @@ func solveDay3Part1(filename string) error {
 			}
 		}
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Printf("Day 3, Problem 1, Answer: %d\n", sum)
 }
 
-func solveDay3Part2(filename string) error {
-	fmt.Println("Day 3, Problem 2")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
-	lines := strings.Split(data, "\n")
+func solveDay3Part2(input string) {
+	lines := strings.Split(input, "\n")
 
 	isDigit := func(row, col int) bool {
 		if row < 0 || row >= len(lines) || col < 0 || col >= len(lines[row]) {
@@ -314,44 +291,85 @@ func solveDay3Part2(filename string) error {
 		}
 		sum += vs[0] * vs[1]
 	}
-	fmt.Printf("Answer: %d\n", sum)
-	return nil
+	fmt.Printf("Day 3, Problem 2, Answer: %d\n", sum)
 }
 
-func solveDay4Part1(filename string) error {
-	fmt.Println("Day 4, Problem 1")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
+func solveDay4Part1(input string) {
+	sum := 0
+	for _, s := range strings.Split(input, "\n") {
+		_, numsPart, ok := strings.Cut(s, ": ")
+		if !ok {
+			continue
+		}
+		wantPart, gotPart, _ := strings.Cut(numsPart, " | ")
+		wantNums := strings.Split(wantPart, " ")
+		gotNums := strings.Split(gotPart, " ")
+		count := 0
+		for _, gotNum := range gotNums {
+			if gotNum != "" && slices.Contains(wantNums, gotNum) {
+				count *= 2
+				if count == 0 {
+					count = 1
+				}
+			}
+		}
+		sum += count
 	}
-	for _, s := range strings.Split(data, "\n") {
+	fmt.Println("Day 4, Problem 1, Answer: %d\n", sum)
+}
+
+func solveDay4Part2(input string) {
+	lines := strings.Split(strings.TrimSpace(input), "\n")
+	won := make([]int, len(lines))
+	for i, s := range lines {
+		_, numsPart, ok := strings.Cut(s, ": ")
+		if !ok {
+			continue
+		}
+		wantPart, gotPart, _ := strings.Cut(numsPart, " | ")
+		wantNums := strings.Split(wantPart, " ")
+		gotNums := strings.Split(gotPart, " ")
+		count := 0
+		for _, gotNum := range gotNums {
+			if gotNum != "" && slices.Contains(wantNums, gotNum) {
+				count++
+			}
+		}
+		for j := 0; j < count; j++ {
+			won[i+j+1] += 1 + won[i]
+		}
+	}
+	sum := 0
+	for _, w := range won {
+		sum += 1 + w
+	}
+	fmt.Printf("Day 4, Problem 2, Answer: %d\n", sum)
+}
+
+func solveDay5Part1(input string) {
+	for _, s := range strings.Split(input, "\n") {
 		fmt.Println(s)
 	}
-	fmt.Printf("Answer: %d\n", 0)
-	return nil
+	fmt.Printf("Day 5, Problem 1, Answer: %d\n", 0)
 }
 
-func solveDay4Part2(filename string) error {
-	fmt.Println("Day 4, Problem 2")
-	data, err := fileAsString(filename)
-	if err != nil {
-		return err
-	}
-	for _, s := range strings.Split(data, "\n") {
+func solveDay5Part2(input string) {
+	for _, s := range strings.Split(input, "\n") {
 		fmt.Println(s)
 	}
-	fmt.Printf("Answer: %d\n", 0)
-	return nil
+	fmt.Printf("Day 5, Problem 2, Answer: %d\n", 0)
 }
 
-func fileAsString(filename string) (string, error) {
-	f, err := os.Open(filename)
-	if err != nil {
-		return "", err
+func solveDay6Part1(input string) {
+	for _, s := range strings.Split(input, "\n") {
+		fmt.Println(s)
 	}
-	b, err := io.ReadAll(f)
-	if err != nil {
-		return "", err
+	fmt.Printf("Day 6, Problem 1, Answer: %d\n", 0)
+}
+
+func solveDay6Part2(input string) {
+	for _, s := range strings.Split(input, "\n") {
+		fmt.Println(s)
 	}
-	return string(b), nil
+	fmt.Printf("Day 6, Problem 2, Answer: %d\n", 0)
 }
