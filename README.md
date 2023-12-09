@@ -63,5 +63,8 @@ Finding the common end state for two paths can be done fast enough by starting w
 When retrieving the end state / period info for each start state, there was only a single end state for each case and the solution took advantage of that. If that was not the case, the problem would get more complicated and it was not needed addressed to get the right solution.
 
 ### Day 9
+Part 1 and Part 2 are basically identical and straightforward when following the examples showing the solution. They construct exacly the same rows of differences. The only change is that instead of accumulating last values in the rows together, we are subtracting the previous accumulated numbr from the first element of the current row.
+
+### Day 10
 
 TBD
