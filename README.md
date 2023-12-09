@@ -6,6 +6,8 @@ Self-imposed constraints:
  - Just standard built-in packages (including new "generic" slices etc.)
  - No common helper top level functions, each problem is self-contained inside a single function (can use inner function closures). This prevents making solutions seemingly simpler while possibly doing extra work to fit the helper functions (having some map/filter/reduce, []string -> []int etc. may be tempting, but can obscure the real complexity of the solution).
  - No going back and refactoring of the previous solutions based on things learned in the newer solutions. The solutions are a snapshot in time and may be possible to use to track any improvements in the code consistency / style / simplicity.
+ - No LLM.
+ - No hints.
 
 Solution notes for each day:
 
