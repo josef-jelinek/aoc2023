@@ -1,4 +1,4 @@
-# aoc2023
+# Advent of Code 2023 - Go Solutions
 https://adventofcode.com/2023
 
 Self-imposed constraints:
@@ -6,8 +6,10 @@ Self-imposed constraints:
  - Just standard built-in packages (including new "generic" slices etc.)
  - No common helper top level functions, each problem is self-contained inside a single function (can use inner function closures). This prevents making solutions seemingly simpler while possibly doing extra work to fit the helper functions (having some map/filter/reduce, []string -> []int etc. may be tempting, but can obscure the real complexity of the solution).
  - No going back and refactoring of the previous solutions based on things learned in the newer solutions. The solutions are a snapshot in time and may be possible to use to track any improvements in the code consistency / style / simplicity.
- - No LLM.
+ - No AI/LLM.
  - No hints.
+
+The solutions are tailored for the particular input format and assume its validity, so all input errors are ignored. Also the solution is not meant to handle any edge cases which are not present in the problem input, especially, if it complicates the solution.
 
 Solution notes for each day:
 
@@ -54,13 +56,13 @@ Part 2 is almost identical with the card kinds updated to move `J` to the end an
 ### Day 8
 Part 1 is again straightforward just having a map from a node name to a pair of node names for `L` and `R` input and traversing while cycling through `L`/`R` directions. End traversing on `ZZZ`.
 
-Part 2 was the biggest increase in difficulty so far and no naive solution would cut it. The solution also maps string symbols to integers for potentially faster operations, but the solution does not really need that step. It only marginally affects the end solution speed.
+Part 2 was the biggest increase in difficulty so far and no naive solution would seem to cut it. The solution also maps string symbols to integers for potentially faster operations, but the solution implemented does not really need that step. It only marginally affects the end solution speed as the string IDs are short.
 
 The main observations in this problem were that the paths must be traversed many times in cycles until they all end on the wanted end nodes. These cycles can be easily extracted for individual paths corresponding to all start nodes, however, the cycles are not determined only by the node but also by the position in the direction string. The other observation was that computing a common number of steps to the end state for two paths with the computed end state offsets and periods is fast and ends up with a different end state offset and period (the period is the least common multiple of the two path periods amd the end state offset is the common end state found).
 
 Finding the common end state for two paths can be done fast enough by starting with the two individual end states and adding the corresponding loop period to the smaller one until they are equal (I did not bother to come up with any formula, as it was not needed for the solution). The total common end state (number of steps) is just repeating the process for two with the first path from the previous common end state operation.
 
-When retrieving the end state / period info for each start state, there was only a single end state for each case and the solution took advantage of that. If that was not the case, the problem would get more complicated and it was not needed addressed to get the right solution.
+When retrieving the end state / period info for each start state, there was only a single end state for each case and the solution took advantage of that. If that was not the case, the problem would get more complicated, and fortunately, it was not needed to be addressed to get the right solution.
 
 ### Day 9
 Part 1 and Part 2 are basically identical and straightforward when following the examples showing the solution. They construct exacly the same rows of differences. The only change is that instead of accumulating last values in the rows together, we are subtracting the previous accumulated numbr from the first element of the current row.
