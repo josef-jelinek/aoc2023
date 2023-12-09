@@ -10,12 +10,12 @@ Self-imposed constraints:
 Solution notes for each day:
 
 ### Day 1
-Part 1 is straightforward when keeping first digit when found and overriding last digit every time a digit is found. This handles a situation when only one digit is present as the first and last will be set at the same time.
+Part 1 is straightforward when keeping first digit when found and overriding last digit every time a digit is found. This handles a situation when only one digit is present, as the first and last ones will be set at the same time.
 
 Part 2 adds a need to map words to digits. Instead of matching agains some map keys (and traversing the map each time), a simple switch with checking for a prefix can do.
 
 ### Day 2
-Part 1 is quite straightforward with multiple nested loops corresponding to the nested problem notation. When a configuration inconsistent with input constrains is found "labeled" continue is used to terminate several loop levels.
+Part 1 is quite straightforward with multiple nested loops corresponding to the nested problem notation. When a configuration inconsistent with input constrains is found, "labeled" continue is used to terminate several loop levels.
 
 Part 2 is even more straigtforward as it processes all the input data and does not have additional hardcoded constraints given. It just keeps maximums for colors per line (even though they are called minimum as they are the minimum needed).
 
@@ -50,5 +50,16 @@ Part 1 boils down to write a function to compare two hands. Then it can be used 
 Part 2 is almost identical with the card kinds updated to move `J` to the end and before the strings is processed to get the kind counts, `J` kind is counted and removed using the mentioned functions and then added to the highest count found. There is one edge case, where there are only `J` cards in a hand as so this returns `[5]` for counts right away.
 
 ### Day 8
+Part 1 is again straightforward just having a map from a node name to a pair of node names for `L` and `R` input and traversing while cycling through `L`/`R` directions. End traversing on `ZZZ`.
+
+Part 2 was the biggest increase in difficulty so far and no naive solution would cut it. The solution also maps string symbols to integers for potentially faster operations, but the solution does not really need that step. It only marginally affects the end solution speed.
+
+The main observations in this problem were that the paths must be traversed many times in cycles until they all end on the wanted end nodes. These cycles can be easily extracted for individual paths corresponding to all start nodes, however, the cycles are not determined only by the node but also by the position in the direction string. The other observation was that computing a common number of steps to the end state for two paths with the computed end state offsets and periods is fast and ends up with a different end state offset and period (the period is the least common multiple of the two path periods amd the end state offset is the common end state found).
+
+Finding the common end state for two paths can be done fast enough by starting with the two individual end states and adding the corresponding loop period to the smaller one until they are equal (I did not bother to come up with any formula, as it was not needed for the solution). The total common end state (number of steps) is just repeating the process for two with the first path from the previous common end state operation.
+
+When retrieving the end state / period info for each start state, there was only a single end state for each case and the solution took advantage of that. If that was not the case, the problem would get more complicated and it was not needed addressed to get the right solution.
+
+### Day 9
 
 TBD
