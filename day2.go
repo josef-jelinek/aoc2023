@@ -31,7 +31,7 @@ gameLoop:
 		}
 		sum += id
 	}
-	fmt.Println("Day 2, Problem 1, Answer: %d\n", sum)
+	fmt.Printf("Day 2, Problem 1, Answer: %d\n", sum)
 }
 
 func solveDay2Part2(input string) {

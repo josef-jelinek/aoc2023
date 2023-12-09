@@ -27,7 +27,7 @@ func solveDay4Part1(input string) {
 		}
 		sum += count
 	}
-	fmt.Println("Day 4, Problem 1, Answer: %d\n", sum)
+	fmt.Printf("Day 4, Problem 1, Answer: %d\n", sum)
 }
 
 func solveDay4Part2(input string) {
