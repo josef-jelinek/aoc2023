@@ -41,6 +41,8 @@ Part 1 needs preprocessing of the input to have mapping ranges ready and can be 
 
 Part 2 is not as straightforward as a naive reuse of the part 1 is sloooow. One observation which helps is that if we resolve a range, the minimum is always the lower bound of the range as all the range values are increasing. So instead of iterating through each seed value one by one, when we resolve a seed to a location, we know that we can safely skip at least as many following seed values as is the shortest remaining range from all the ranges we went through. This optimization is enough to make the solution computation instant.
 
+The implemented solution is only correct, because the initial seeds fall into intervals in such a way that we can skip until the interval ends and do not deal with unmapped IDs. If there were many IDs which do not fall into the explicit ranges, we would have to create "virtual ranges", which map ID->ID between the ranges specified. Fortunately the problem input was well covered by the explicit ranges.
+
 ### Day 6
 Part 1 is straightforward as there is a very simple formula for the distance from the time `d = i * (t - i)` which is a nice upside-down parabola and symetric on the range `t`.
 So we can go only to the half of the interval and if we find a bound where we beat the record, we know where this ends and do not need to iterate over the whole interval.
