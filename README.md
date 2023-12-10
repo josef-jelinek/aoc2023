@@ -70,5 +70,13 @@ When retrieving the end state / period info for each start state, there was only
 Part 1 and Part 2 are basically identical and straightforward when following the examples showing the solution. They construct exacly the same rows of differences. The only change is that instead of accumulating last values in the rows together, we are subtracting the previous accumulated numbr from the first element of the current row.
 
 ### Day 10
+Part 1 is a case of a breadth-first search following two directions from the start and end when they meet. No tricks and in this case skipping a check for the right connectivity and allowing e.g. "77" to be a valid pipeline connection still gave the right result.
 
+Part 2 requires more careful handling of the data and connections as the inside/outside algorithm is sensitive to the right data. Inside/outside can be determined per-line by counting how many pipes going vertically. Each vertical pipe flips between inside and outside. Vertical pipes are "|", "FJ", "L7", "F-J", "L--7", "F--J", ... Connection like "F7", "LJ", "F-7", "L-J", "F--7", ... are not flipping inside/outside.
+
+To have the correct bahavior, we need to know what pipe type "S" replaces and there are 6 cases, which depend from where the surrounding pipes connect.
+
+Only pipes, which were detected as edges, using a modified algoritm from part 1, should be checked, the rest is the same as ".".
+
+### Day 11
 TBD
