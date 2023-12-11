@@ -79,4 +79,9 @@ To have the correct bahavior, we need to know what pipe type "S" replaces and th
 Only pipes, which were detected as edges, using a modified algoritm from part 1, should be checked, the rest is the same as ".".
 
 ### Day 11
+Part 1 has a couple of similar solutions with different requirements on memory. Since I was guessing this was likely a focus of part 2, I went for a solution which just finds the empty rows/columns (by marking which are not empty) and just creates a list of galaxy co-ordinates. Then the shortest path can be computed simply by using "Manhattan" metric dx+dy and increase by the number of empty rows and empty columns between two galaxies (it just counts it from the arrays of empty rows and columns).
+
+Part 2 is just replacing increment of 1 for each empty row/column by increase of 999999 (as 1 gets replaced by 1000000, it is an increase of 999999). All the work was done in part 1 this time.
+
+### Day 12
 TBD
