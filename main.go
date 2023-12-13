@@ -31,6 +31,8 @@ var solveFuncByID = map[string]func(string){
 	"11-2": solveDay11Part2,
 	"12-1": solveDay12Part1,
 	"12-2": solveDay12Part2,
+	"13-1": solveDay13Part1,
+	"13-2": solveDay13Part2,
 }
 
 func main() {

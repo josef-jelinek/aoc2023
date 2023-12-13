@@ -94,4 +94,10 @@ Part 2 makes the search space for the recursive algorithm significantly bigger a
 In this case, this problem is very repetitive and e.g. a simple change to a start range  doubles the time, but does not affect the number of solutions for the remaining ranges. Together with the input being of a reasonable size (both springs strings and range sizes), it allows for remembering result for a particular positions in the springs string and range array as a simple 2D array with return numbers. The recursive function has been updated not only to contain the new "memo" array, but also to use the original inputs with indexes instead using "unprocessed" slices of the original input. This change makes all the solutions to be found instantly.
 
 ### Day 13
+Part 1 is a straightforward problem, where even a direct/naive solution works well. When the grid is recorded as a string array, testing all symmetry lines and compare a pair of lines at a time comes naturally.
+Instead of treating row and column versions specially, a simple `transpose` function is used to convert column symmetry into a simpler row symmetry.
+
+Part 2 in this case can be solved by the same naive approach with the only difference that instead of a string comparison a dedicated compare fuction is used, which returns how many characters differ between two strings. It can return 2 as soon as it finds at least 2 differences as there must be at most 1 difference in the entire grid.
+
+### Day 14
 TBD
