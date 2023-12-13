@@ -84,4 +84,14 @@ Part 1 has a couple of similar solutions with different requirements on memory. 
 Part 2 is just replacing increment of 1 for each empty row/column by increase of 999999 (as 1 gets replaced by 1000000, it is an increase of 999999). All the work was done in part 1 this time.
 
 ### Day 12
+Part 1 leads to a pretty straightforward recursive definition of the problem:
+ - Terminating conditions: we ran out of ranges and have no `#` slots left - solution found; we ran out of spring slots - solution not found.
+ - Reduction step: skip `.`/`?` solve for the rest; skip a given range + 1 character after (range must overlay `?`/`#` only and not be followed by `#`, the character after only if there are any left) and solve for the rest.
+ - Synthesis step: accumulate for `?`/`#` alternatives; pass on for `.`.
+
+Part 2 makes the search space for the recursive algorithm significantly bigger and some input lines may be beyond brute-force in a reasonable time. There may be some improvements using cutting the solution tree branches early, but that usually just offsets feasible inputs by constant size increase.
+
+In this case, this problem is very repetitive and e.g. a simple change to a start range  doubles the time, but does not affect the number of solutions for the remaining ranges. Together with the input being of a reasonable size (both springs strings and range sizes), it allows for remembering result for a particular positions in the springs string and range array as a simple 2D array with return numbers. The recursive function has been updated not only to contain the new "memo" array, but also to use the original inputs with indexes instead using "unprocessed" slices of the original input. This change makes all the solutions to be found instantly.
+
+### Day 13
 TBD
