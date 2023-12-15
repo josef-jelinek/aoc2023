@@ -107,4 +107,9 @@ Part 2 is a very different problem and actually needs to perform rolling of the 
 The loop detection is done by computing a simple numeric "hash" (just adding all y * width + x, where the `O` stones are, seems good enough) and remember the hash after every cycle. After each cycle, the closest recent identical hash is looked up until one is found and a potential loop compare is initialized. The loop comparison progresses after each cycle until either a computed hash does not match the expected and the loop compare is canceled, or when the compare reaches the end of the potential loop sucessfully. This makes sure that all hashes in the loop match and that misdetecting the loop is basically impossible.
 
 ## Day 15
+Part 1 is just a simple sum of results of adding and multiplying a single byte. When byte type is used, no explicit `mod 256` is needed.
+
+Part 2 reinvents a hashtable with open hashing (storing collision as a separate list instead of using only slots of the hashtable). There is no need to use anything other than an array of the lenses for each box and using a linear search plus update/append/delete.
+
+## Day 16
 TBD
