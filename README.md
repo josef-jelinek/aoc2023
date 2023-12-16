@@ -112,4 +112,9 @@ Part 1 is just a simple sum of results of adding and multiplying a single byte. 
 Part 2 reinvents a hashtable with open hashing (storing collision as a separate list instead of using only slots of the hashtable). There is no need to use anything other than an array of the lenses for each box and using a linear search plus update/append/delete.
 
 ## Day 16
+Part 1 can be solved by different path traversing techniques (recursively - depth first, with a queue - breadth first). Solution chosen used a queue (Go slice is used for simplicity although it does not release previously used parts of the queue until finished, but that is not an issue for a one time task at hand). A grid remembering light beams with their directions is used both to get how many tiles are energized and to terminate search if the light with the same direction was already explored. The result is then computed by counting non zero grid cells.
+
+Part 2 is doing the same for the 2 * width + 2 * height individual queue seeds and getting the maximum of the results. Since part 1 was already reasonably efficient, part 2 solution is printed instantly as well.
+
+## Day 17
 TBD
