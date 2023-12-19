@@ -117,4 +117,9 @@ Part 1 can be solved by different path traversing techniques (recursively - dept
 Part 2 is doing the same for the 2 * width + 2 * height individual queue seeds and getting the maximum of the results. Since part 1 was already reasonably efficient, part 2 solution is printed instantly as well.
 
 ## Day 17
+Part 1 is a non-trivial version of path finding. An attempt to use a simpler depth-first search with a heuristic function (using precomputed grid of smallest cost from each grid cell disregarding 3-in-row-max constraints) works well for smaller examples, but is too slow for the full input. So some sort of Dijkstra algorithm is a good next option. Using a priority queue allows to consider the first solution optimal. It seems like even naive priority queue using plain array and O(N) inserting is sufficiently fast. The only tricky part is then knowing which "nodes" were visited as two nodes are not the same for the same x and y if they are visited from a different directions or different consecutive step count in the same direction. The simplest is probably to just use a struct with x, y, direction, count as a map key to get the smallest found cost for such a node.
+
+Part 2 is the same as part 1 with an additional condition for the end node and slightly different conditions for adding new nodes. Computationally, it is heavier than part 1, but should still finish in 1-2s on a decent laptop. If it is too slow, using e.g. a heap for the priority would be a low hanging fruit. Having more compact node ID would be another (can be 4 bytes instead of 32 bytes on 64bit system).
+
+## Day 18
 TBD
