@@ -122,4 +122,11 @@ Part 1 is a non-trivial version of path finding. An attempt to use a simpler dep
 Part 2 is the same as part 1 with an additional condition for the end node and slightly different conditions for adding new nodes. Computationally, it is heavier than part 1, but should still finish in 1-2s on a decent laptop. If it is too slow, using e.g. a heap for the priority would be a low hanging fruit. Having more compact node ID would be another (can be 4 bytes instead of 32 bytes on 64bit system).
 
 ## Day 18
+Part 1 is similar to problem from day 10 in how we detect inside/outside of a polygon. It is solved naively by counting grid cell of the area outline and then counting empty inside grid cells.
+
+Part 2 is a generalization of part 1, where it helps not to think about the grid as an "occupancy" grid but as a area cells and mark vertical cell boundaries as up or down. To make representation compact, a grid is constructed only from unique x and y co-ordinates. To compute volume, not only those delineated rectangular areas are added together, but also the outline needs to be added as it has a thickness, but only half of it is outside areas already counted. The last contribution to the volume is corners, where convex/outside corners contribute by 1/4 and concave by -1/4, resulting in area of +1 total as all other corner contributions cancel each other.
+
+Instead of counting boxes and detecting inside/outside areas of a grid, a polygon area algorithm from geometry can probably be used, but needs to use floating point numbers and rounding. (The algorithm sums up signed areas retrieved from vector cross-product.)
+
+## Day 19
 TBD
