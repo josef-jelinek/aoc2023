@@ -129,4 +129,9 @@ Part 2 is a generalization of part 1, where it helps not to think about the grid
 Instead of counting boxes and detecting inside/outside areas of a grid, a polygon area algorithm from geometry can probably be used, but needs to use floating point numbers and rounding. (The algorithm sums up signed areas retrieved from vector cross-product.)
 
 ## Day 19
+Part 1 is straightforwad FSA with two end states ('A' and 'R') and one start state ('in'). To simplify the logic of running the FSA, the parsed rules contain a predicate boolean function which checks the condition in the rule.
+
+Part 2 is a different problem, where instead of running the FSA, it explores all branches until the final states and collects end intervals which were reduced by the rule conditions. Since each branching splits intervals into non-overlapping segments, we do not need to account for any overlaps when we sum all the posibilities for the resulting intervals. The exploration is done recursively and relies on the fact that the FSA does not contain any cycles.
+
+## Day 20
 TBD
