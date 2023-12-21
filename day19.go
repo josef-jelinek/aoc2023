@@ -58,7 +58,7 @@ func solveDay19Part1(input string) {
 			sum += rating['x'] + rating['m'] + rating['a'] + rating['s']
 		}
 	}
-	fmt.Printf("Day 18, Problem 1, Answer: %v\n", sum)
+	fmt.Printf("Day 19, Problem 1, Answer: %v\n", sum)
 }
 
 func solveDay19Part2(input string) {
@@ -117,5 +117,5 @@ func solveDay19Part2(input string) {
 	for _, i := range intervals {
 		sum += (i[1] - i[0] + 1) * (i[3] - i[2] + 1) * (i[5] - i[4] + 1) * (i[7] - i[6] + 1)
 	}
-	fmt.Printf("Day 18, Problem 2, Answer: %v\n", sum)
+	fmt.Printf("Day 19, Problem 2, Answer: %v\n", sum)
 }

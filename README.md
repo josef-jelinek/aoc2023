@@ -134,4 +134,19 @@ Part 1 is straightforwad FSA with two end states ('A' and 'R') and one start sta
 Part 2 is a different problem, where instead of running the FSA, it explores all branches until the final states and collects end intervals which were reduced by the rule conditions. Since each branching splits intervals into non-overlapping segments, we do not need to account for any overlaps when we sum all the posibilities for the resulting intervals. The exploration is done recursively and relies on the fact that the FSA does not contain any cycles.
 
 ## Day 20
+Part 1 is a form of simulator of a stateful machine. Typically, OOP comes to mind for similar class of problems, but here it is likely not simpler than just storing states of the "modules" separately in an array, which for each module holds either nothing (broadcaster, output), a single flag for flip-flop, or an input flag array for a conjunction module. All three can be represented by `[]byte` which is either nil, one element, or with a length matching the inputs.
+
+The processing is done by dequeueing/enqueueing signals as they are processed/created.
+
+For the small example problems, we can just detect when we get back to the initial state (all values in the state arrays are 0) and then multiply the number of signals detected to get amounts for 1000 button pushes. For the input problem, it will need to go through all the states as it does not get back to the initial state soon enough.
+
+Part 2 requires a change of thinking as there is no way to reach the requested state in a reasonable amount of time just by running the simulation. The solution assumes that the output is fed from a conjunction module with multiple inputs and if we compute when those inputs generate high pulses, we can deduce when the low output pulse is sent.
+
+Another important thing is track signals as they are processed instead of checking states after the processing is complete, since the pulses seem to be reset before the end of each cycle. Many assumptions about periodicity of the state are specific to the given input and obrained by analyzing the processing as it is being run.
+
+After getting a period of high pulses for each end conjunction input, we can compute the least common multiple from the detected cycles. In this case it seems the greatest common divider is 1, so the result is just a multiplication of the end input cycle lengths.
+
+In some aspects this problem resembles day 8, where it was also about detecting cycles and composing them together. In this case the problem is simplified that the cycles start in the beginning, so we do not need to deal with constant offsets of the cycle starts.
+
+## Day 21
 TBD
