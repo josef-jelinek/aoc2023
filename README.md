@@ -149,4 +149,21 @@ After getting a period of high pulses for each end conjunction input, we can com
 In some aspects this problem resembles day 8, where it was also about detecting cycles and composing them together. In this case the problem is simplified that the cycles start in the beginning, so we do not need to deal with constant offsets of the cycle starts.
 
 ## Day 21
+Part 1 was a straightforward breadth-first search without keeping track of visited fields. Since the number of steps is not enough to exceed boundaries of the grid, no bound checking / wrapping around is needed.
+
+Part 2 is a very different problem and relies on various assumptions depending on which kind of solution is pursued. After trying to find patterns in the distances for individual fields, it seemed to be better to get patterns for counts for individual steps. The counts are alternating even/odd fields and seem to be too chaotic. However patterns each grid width seem to be predictable.
+
+Very likely tied to how the input is constructed, the low amount of obstacles makes the "area" increase similarly predictably as if there were no obstacles only it is not as easy to derive.
+
+Without any obstacles, the area would form a diamond shape (because of a lack of diagonal moves) and the area increases quadratically with the number of steps (as area of a 2D shape increases quadratically with the axis scale). Fortunately, with this input the formula is the same with some constant and linear components added to the result and all that is needed are three points.
+
+These three points needs to be aligned with the grid multiple for the number of steps in the problem. This is done by sampling at `n%size`, `n + n%size`, and `2n + n%size`, where n is the specified total number of steps and `size` is the size of the grid side. Here we use the fact that the grid is square and the start is right in the middle.
+
+Since this requires searching outside of the input grid, we need to "wrap around" the co-ordinates when testing for the obstacles. In Go, there is no real "modulo" operator, just a "remainder", which means `-1 % size -> -1` instead of `size - 1`, so we simulate modulo by `((x + dx)%size + size)%size` as `x` can be arbitrarily large, positive or negative.
+
+After we get the counts for the selected steps, we need to extrapolate the parabola from the constant offset, first order difference, and second order difference, which correspond to derivatives if we did not deal with discrete input. Each step the value increases by the first order difference and each other step there is second order difference times the step increase. As the second order difference is computed by subtracting two first order diferences, it starts comtributing one step later than the first order difference.
+
+As the first step to computing the field counts uses the same search as part 1 with no optimizations (e.g. taking into account that there are two independent even/odd field sets and that all previously visited even/odd step fields are in the final even/odd set), it takes slightly over 2s to get the solution on a decent laptop.
+
+## Day 22
 TBD

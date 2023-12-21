@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 )
 
 var solveFuncByID = map[string]func(string){
@@ -47,6 +48,8 @@ var solveFuncByID = map[string]func(string){
 	"19-2": solveDay19Part2,
 	"20-1": solveDay20Part1,
 	"20-2": solveDay20Part2,
+	"21-1": solveDay21Part1,
+	"21-2": solveDay21Part2,
 }
 
 func main() {
@@ -73,6 +76,11 @@ func solve(id, filename string) error {
 	if solve == nil {
 		return fmt.Errorf("invalid ID: %q", id)
 	}
+
+	defer func(t0 time.Time) {
+		fmt.Printf("Solution took %v.\n", time.Since(t0))
+	}(time.Now())
+
 	solve(string(b))
 	return nil
 }
