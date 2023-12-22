@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay10Part1(input string) {
+func solveDay10Part1(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	dimX := len(lines[0])
 	dimY := len(lines)
@@ -46,10 +45,10 @@ func solveDay10Part1(input string) {
 			nextX, nextY, nextD = append(nextX, x), append(nextY, y+1), append(nextD, d+1)
 		}
 	}
-	fmt.Printf("Day 10, Problem 1, Answer: %v\n", maxD)
+	return maxD
 }
 
-func solveDay10Part2(input string) {
+func solveDay10Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	dimX := len(lines[0])
 	dimY := len(lines)
@@ -142,5 +141,5 @@ func solveDay10Part2(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 10, Problem 2, Answer: %v\n", count)
+	return count
 }

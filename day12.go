@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
-func solveDay12Part1(input string) {
+func solveDay12Part1(input string) any {
 	sum := 0
 	for _, line := range strings.Split(strings.TrimSpace(input), "\n") {
 		springs, rangesStr, _ := strings.Cut(line, " ")
@@ -17,10 +16,10 @@ func solveDay12Part1(input string) {
 		}
 		sum += countMatches(springs, ranges)
 	}
-	fmt.Printf("Day 12, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay12Part2(input string) {
+func solveDay12Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	sum := 0
 	for _, line := range lines {
@@ -52,7 +51,7 @@ func solveDay12Part2(input string) {
 		}
 		sum += countMatchesMemo(0, 0, springs, ranges, memo)
 	}
-	fmt.Printf("Day 12, Problem 2, Answer: %v\n", sum)
+	return sum
 }
 
 func countMatches(springs string, ranges []int) int {

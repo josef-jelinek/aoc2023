@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay16Part1(input string) {
+func solveDay16Part1(input string) any {
 	const left = 1
 	const right = 2
 	const up = 4
@@ -56,10 +55,10 @@ func solveDay16Part1(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 16, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay16Part2(input string) {
+func solveDay16Part2(input string) any {
 	const left = 1
 	const right = 2
 	const up = 4
@@ -123,5 +122,5 @@ func solveDay16Part2(input string) {
 		}
 		maxSum = max(maxSum, sum)
 	}
-	fmt.Printf("Day 16, Problem 2, Answer: %v\n", maxSum)
+	return maxSum
 }

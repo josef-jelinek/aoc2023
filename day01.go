@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay1Part1(input string) {
+func solveDay1Part1(input string) any {
 	sum := 0
 	for _, s := range strings.Split(input, "\n") {
 		var d10, d1 int
@@ -21,10 +20,10 @@ func solveDay1Part1(input string) {
 		}
 		sum += d10 + d1
 	}
-	fmt.Printf("Day 1, Problem 1, Answer: %d\n", sum)
+	return sum
 }
 
-func solveDay1Part2(input string) {
+func solveDay1Part2(input string) any {
 	sum := 0
 	for _, s := range strings.Split(input, "\n") {
 		var d10, d1 int
@@ -63,5 +62,5 @@ func solveDay1Part2(input string) {
 		}
 		sum += d10 + d1
 	}
-	fmt.Printf("Day 1, Problem 2, Answer: %d\n", sum)
+	return sum
 }

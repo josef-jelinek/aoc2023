@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
-func solveDay2Part1(input string) {
+func solveDay2Part1(input string) any {
 	maxByColor := map[string]int{
 		"red":   12,
 		"green": 13,
@@ -31,10 +30,10 @@ gameLoop:
 		}
 		sum += id
 	}
-	fmt.Printf("Day 2, Problem 1, Answer: %d\n", sum)
+	return sum
 }
 
-func solveDay2Part2(input string) {
+func solveDay2Part2(input string) any {
 	sum := 0
 	for _, s := range strings.Split(input, "\n") {
 		_, spec, ok := strings.Cut(s, ": ")
@@ -55,5 +54,5 @@ func solveDay2Part2(input string) {
 		}
 		sum += power
 	}
-	fmt.Printf("Day 2, Problem 2, Answer: %d\n", sum)
+	return sum
 }

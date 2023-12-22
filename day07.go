@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func solveDay7Part1(input string) {
+func solveDay7Part1(input string) any {
 	type hand struct {
 		cards string
 		bid   int
@@ -47,10 +46,10 @@ func solveDay7Part1(input string) {
 	for i, v := range hands {
 		sum += v.bid * (i + 1)
 	}
-	fmt.Printf("Day 7, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay7Part2(input string) {
+func solveDay7Part2(input string) any {
 	type hand struct {
 		cards string
 		bid   int
@@ -96,5 +95,5 @@ func solveDay7Part2(input string) {
 	for i, v := range hands {
 		sum += v.bid * (i + 1)
 	}
-	fmt.Printf("Day 7, Problem 2, Answer: %v\n", sum)
+	return sum
 }

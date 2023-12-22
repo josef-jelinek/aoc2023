@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func solveDay5Part1(input string) {
+func solveDay5Part1(input string) any {
 	lines := strings.Split(input, "\n")
 	seedsStr, _ := strings.CutPrefix(lines[0], "seeds: ")
 	var seeds []int
@@ -55,10 +54,10 @@ func solveDay5Part1(input string) {
 		}
 		minLocation = min(minLocation, id)
 	}
-	fmt.Printf("Day 5, Problem 1, Answer: %d\n", minLocation)
+	return minLocation
 }
 
-func solveDay5Part2(input string) {
+func solveDay5Part2(input string) any {
 	lines := strings.Split(input, "\n")
 	seedsStr, _ := strings.CutPrefix(lines[0], "seeds: ")
 	var seeds []int // start1 count1 start2 count2 ...
@@ -117,5 +116,5 @@ func solveDay5Part2(input string) {
 			seedID += skip
 		}
 	}
-	fmt.Printf("Day 5, Problem 2, Answer: %d\n", minLocation)
+	return minLocation
 }

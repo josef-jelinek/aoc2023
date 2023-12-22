@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func solveDay18Part1(input string) {
+func solveDay18Part1(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	var dirs []string
 	var counts []int
@@ -96,10 +95,10 @@ func solveDay18Part1(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 18, Problem 1, Answer: %v\n", volume)
+	return volume
 }
 
-func solveDay18Part2(input string) {
+func solveDay18Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	var dirs []byte
 	var counts []int
@@ -190,5 +189,5 @@ func solveDay18Part2(input string) {
 	}
 	// Increase volume by outside half of the outline and 4 "corners" (convex turns - concave turns).
 	volume += length/2 + 1
-	fmt.Printf("Day 18, Problem 2, Answer: %v\n", volume)
+	return volume
 }

@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 	"strings"
 )
 
-func solveDay20Part1(input string) {
+func solveDay20Part1(input string) any {
 	type signal struct {
 		src, dst int
 		lev      byte
@@ -116,10 +115,10 @@ loop:
 			hi += levs[1]
 		}
 	}
-	fmt.Printf("Day 20, Problem 1, Answer: %v\n", lo*hi)
+	return lo * hi
 }
 
-func solveDay20Part2(input string) {
+func solveDay20Part2(input string) any {
 	type signal struct {
 		src, dst int
 		lev      byte
@@ -234,5 +233,5 @@ loop:
 		}
 		firstHigh *= firstHighs[i] / gcd
 	}
-	fmt.Printf("Day 20, Problem 2, Answer: %v\n", firstHigh)
+	return firstHigh
 }

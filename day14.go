@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay14Part1(input string) {
+func solveDay14Part1(input string) any {
 	grid := byteGrid(strings.Split(strings.TrimSpace(input), "\n"))
 	sum := 0
 	for col := 0; col < len(grid[0]); col++ {
@@ -20,10 +19,10 @@ func solveDay14Part1(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 14, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay14Part2(input string) {
+func solveDay14Part2(input string) any {
 	const numCycles = 1_000_000_000
 	grid := byteGrid(strings.Split(strings.TrimSpace(input), "\n"))
 	w, h := len(grid[0]), len(grid)
@@ -60,7 +59,7 @@ func solveDay14Part2(input string) {
 		}
 		hashHistory = append(hashHistory, hash)
 	}
-	fmt.Printf("Day 14, Problem 2, Answer: %v\n", load)
+	return load
 }
 
 func doCycle(grid [][]byte, w, h int) {

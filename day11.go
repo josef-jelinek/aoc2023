@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay11Part1(input string) {
+func solveDay11Part1(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	var xs, ys []int
 	var lockedYs, lockedXs = make([]byte, len(lines)), make([]byte, len(lines[0]))
@@ -42,10 +41,10 @@ func solveDay11Part1(input string) {
 			sum += dx + dy
 		}
 	}
-	fmt.Printf("Day 11, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay11Part2(input string) {
+func solveDay11Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	var xs, ys []int
 	var lockedYs, lockedXs = make([]byte, len(lines)), make([]byte, len(lines[0]))
@@ -82,5 +81,5 @@ func solveDay11Part2(input string) {
 			sum += dx + dy
 		}
 	}
-	fmt.Printf("Day 11, Problem 2, Answer: %v\n", sum)
+	return sum
 }

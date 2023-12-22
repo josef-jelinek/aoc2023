@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay17Part1(input string) {
+func solveDay17Part1(input string) any {
 	const (
 		none = iota
 		right
@@ -80,10 +79,10 @@ func solveDay17Part1(input string) {
 			add(nn, up, n.dir, n.count)
 		}
 	}
-	fmt.Printf("Day 17, Problem 1, Answer: %v\n", cost)
+	return cost
 }
 
-func solveDay17Part2(input string) {
+func solveDay17Part2(input string) any {
 	const (
 		none = iota
 		right
@@ -161,5 +160,5 @@ func solveDay17Part2(input string) {
 			add(nn, up, n.dir, n.count)
 		}
 	}
-	fmt.Printf("Day 17, Problem 2, Answer: %v\n", cost)
+	return cost
 }

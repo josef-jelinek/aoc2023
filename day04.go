@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"slices"
 	"strings"
 )
 
-func solveDay4Part1(input string) {
+func solveDay4Part1(input string) any {
 	sum := 0
 	for _, s := range strings.Split(input, "\n") {
 		_, numsPart, ok := strings.Cut(s, ": ")
@@ -27,10 +26,10 @@ func solveDay4Part1(input string) {
 		}
 		sum += count
 	}
-	fmt.Printf("Day 4, Problem 1, Answer: %d\n", sum)
+	return sum
 }
 
-func solveDay4Part2(input string) {
+func solveDay4Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	won := make([]int, len(lines))
 	for i, s := range lines {
@@ -55,5 +54,5 @@ func solveDay4Part2(input string) {
 	for _, w := range won {
 		sum += 1 + w
 	}
-	fmt.Printf("Day 4, Problem 2, Answer: %d\n", sum)
+	return sum
 }

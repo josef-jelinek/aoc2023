@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
-func solveDay9Part1(input string) {
+func solveDay9Part1(input string) any {
 	lines := strings.Split(input, "\n")
 	sum := 0
 	for _, s := range lines {
@@ -39,10 +38,10 @@ func solveDay9Part1(input string) {
 		}
 		sum += next
 	}
-	fmt.Printf("Day 9, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay9Part2(input string) {
+func solveDay9Part2(input string) any {
 	lines := strings.Split(input, "\n")
 	sum := 0
 	for _, s := range lines {
@@ -75,5 +74,5 @@ func solveDay9Part2(input string) {
 		}
 		sum += prev
 	}
-	fmt.Printf("Day 9, Problem 2, Answer: %v\n", sum)
+	return sum
 }

@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay8Part1(input string) {
+func solveDay8Part1(input string) any {
 	lines := strings.Split(input, "\n")
 	dirs := lines[0]
 	navMap := make(map[string][]string)
@@ -26,10 +25,10 @@ func solveDay8Part1(input string) {
 		}
 		i++
 	}
-	fmt.Printf("Day 8, Problem 1, Answer: %v\n", i)
+	return i
 }
 
-func solveDay8Part2(input string) {
+func solveDay8Part2(input string) any {
 	lines := strings.Split(input, "\n")
 	dirs := lines[0]
 	idMap := make(map[string]int)
@@ -109,5 +108,5 @@ func solveDay8Part2(input string) {
 		}
 		period *= loopLens[i] / gcd
 	}
-	fmt.Printf("Day 8, Problem 2, Answer: %v\n", endState)
+	return endState
 }

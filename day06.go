@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
-func solveDay6Part1(input string) {
+func solveDay6Part1(input string) any {
 	lines := strings.Split(input, "\n")
 	var times, dists []int
 	timesStr, _ := strings.CutPrefix(lines[0], "Time:")
@@ -30,10 +29,10 @@ func solveDay6Part1(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 6, Problem 1, Answer: %d\n", product)
+	return product
 }
 
-func solveDay6Part2(input string) {
+func solveDay6Part2(input string) any {
 	lines := strings.Split(input, "\n")
 	timeStr, _ := strings.CutPrefix(lines[0], "Time:")
 	distStr, _ := strings.CutPrefix(lines[1], "Distance:")
@@ -49,5 +48,5 @@ func solveDay6Part2(input string) {
 			break
 		}
 	}
-	fmt.Printf("Day 6, Problem 2, Answer: %d\n", count)
+	return count
 }

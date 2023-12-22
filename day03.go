@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay3Part1(input string) {
+func solveDay3Part1(input string) any {
 	lines := strings.Split(input, "\n")
 
 	isDigit := func(row, col int) bool {
@@ -49,10 +48,10 @@ func solveDay3Part1(input string) {
 			}
 		}
 	}
-	fmt.Printf("Day 3, Problem 1, Answer: %d\n", sum)
+	return sum
 }
 
-func solveDay3Part2(input string) {
+func solveDay3Part2(input string) any {
 	lines := strings.Split(input, "\n")
 
 	isDigit := func(row, col int) bool {
@@ -122,5 +121,5 @@ func solveDay3Part2(input string) {
 		}
 		sum += vs[0] * vs[1]
 	}
-	fmt.Printf("Day 3, Problem 2, Answer: %d\n", sum)
+	return sum
 }

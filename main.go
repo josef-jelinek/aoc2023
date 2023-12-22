@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"time"
 )
 
-var solveFuncByID = map[string]func(string){
+var solveFuncByID = map[string]func(string) any{
 	"1-1":  solveDay1Part1,
 	"1-2":  solveDay1Part2,
 	"2-1":  solveDay2Part1,
@@ -50,6 +51,8 @@ var solveFuncByID = map[string]func(string){
 	"20-2": solveDay20Part2,
 	"21-1": solveDay21Part1,
 	"21-2": solveDay21Part2,
+	"22-1": solveDay22Part1,
+	"22-2": solveDay22Part2,
 }
 
 func main() {
@@ -77,10 +80,12 @@ func solve(id, filename string) error {
 		return fmt.Errorf("invalid ID: %q", id)
 	}
 
-	defer func(t0 time.Time) {
-		fmt.Printf("Solution took %v.\n", time.Since(t0))
-	}(time.Now())
+	day, part, _ := strings.Cut(id, "-")
+	t0 := time.Now()
 
-	solve(string(b))
+	answer := solve(string(b))
+
+	fmt.Printf("Solution for day %s, part %s: %v\n", day, part, answer)
+	fmt.Printf("Solution took %v.\n", time.Since(t0))
 	return nil
 }

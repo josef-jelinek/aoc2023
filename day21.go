@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay21Part1(input string) {
+func solveDay21Part1(input string) any {
 	n := 64
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 	var sx, sy int
@@ -35,10 +34,10 @@ func solveDay21Part1(input string) {
 		}
 		plots = newPlots
 	}
-	fmt.Printf("Day 21, Problem 1, Answer: %v\n", len(plots))
+	return len(plots)
 }
 
-func solveDay21Part2(input string) {
+func solveDay21Part2(input string) any {
 	steps := 26501365
 	dirs := [][2]int{{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
 	lines := strings.Split(strings.TrimSpace(input), "\n")
@@ -89,5 +88,5 @@ func solveDay21Part2(input string) {
 	// ...
 	x := steps / n
 	y := x*((x-1)*d2/2+d1) + c
-	fmt.Printf("Day 21, Problem 2, Answer: %v\n", y)
+	return y
 }

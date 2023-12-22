@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
-func solveDay13Part1(input string) {
+func solveDay13Part1(input string) any {
 	lines := strings.Split(strings.TrimSpace(input)+"\n", "\n")
 	var grid []string
 	sum := 0
@@ -21,10 +20,10 @@ func solveDay13Part1(input string) {
 		}
 		grid = append(grid, line)
 	}
-	fmt.Printf("Day 13, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay13Part2(input string) {
+func solveDay13Part2(input string) any {
 	lines := strings.Split(strings.TrimSpace(input)+"\n", "\n")
 	var grid []string
 	sum := 0
@@ -40,7 +39,7 @@ func solveDay13Part2(input string) {
 		}
 		grid = append(grid, line)
 	}
-	fmt.Printf("Day 13, Problem 2, Answer: %v\n", sum)
+	return sum
 }
 
 func findSymLine(grid []string) int {

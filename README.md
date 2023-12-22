@@ -166,4 +166,11 @@ After we get the counts for the selected steps, we need to extrapolate the parab
 As the first step to computing the field counts uses the same search as part 1 with no optimizations (e.g. taking into account that there are two independent even/odd field sets and that all previously visited even/odd step fields are in the final even/odd set), it takes slightly over 2s to get the solution on a decent laptop.
 
 ## Day 22
+Part 1 can be done in several steps to find out and count which bricks are not a single supporting brick for other bricks. Most of the work is done by "settling" bricks. First potential candidates with overlapping x and y, which are at lower z are found. Then for each brick which has its supporting bricks already settled its z is adjusted to sit on the highest supporting brick. This is done untill all is settled. Then from the "supporting" brick candidates only those right underneath are kept.
+
+Part 2 reuses most of the code from part 1 except instead of counting "independent" bricks, bricks which cause other bricks to fall are seeds into a kind of breadth-first search to detect which other transitively dependent bricks will fall. The count includes only the dependent bricks, not the "seed" bricks destroyed.
+
+Using straightforward arrays and loops in loops instead of anything more sophisticated seems to be acceptable as the solution is found in ~20ms on a decent laptop.
+
+## Day 23
 TBD

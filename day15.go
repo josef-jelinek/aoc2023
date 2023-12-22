@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
-func solveDay15Part1(input string) {
+func solveDay15Part1(input string) any {
 	steps := strings.Split(strings.TrimSpace(input), ",")
 	sum := 0
 	for _, s := range steps {
@@ -16,10 +15,10 @@ func solveDay15Part1(input string) {
 		}
 		sum += int(h)
 	}
-	fmt.Printf("Day 15, Problem 1, Answer: %v\n", sum)
+	return sum
 }
 
-func solveDay15Part2(input string) {
+func solveDay15Part2(input string) any {
 	type lens struct {
 		label string
 		value int
@@ -62,5 +61,5 @@ stepLoop:
 			sum += (i + 1) * (j + 1) * l.value
 		}
 	}
-	fmt.Printf("Day 15, Problem 2, Answer: %v\n", sum)
+	return sum
 }
