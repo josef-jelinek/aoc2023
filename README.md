@@ -173,4 +173,22 @@ Part 2 reuses most of the code from part 1 except instead of counting "independe
 Using straightforward arrays and loops in loops instead of anything more sophisticated seems to be acceptable as the solution is found in ~20ms on a decent laptop.
 
 ## Day 23
-TBD
+Part 1 is a straightforward application of a DFS (depth-first-search) using a recursive function. The input seems to be formed in such a way that it forms an DAG (directed-acyclic-graph), which makes the search fast similarly to traversing a tree data structure.
+
+Part 2 relaxes the constraints of intersections to form a DAG and it forms a much less efficiently traversed general graph. It gets too slow to directly traverse a character based grid, but converting to a simplified graph seems to be enough to still get solution in ~1s. The simplified graph just extract intersections (3+ non-blocked neighbors) and go from intersection to intersection adding distance between intersections.
+
+## Day 24
+Part 1 is an application of linear algebra / computer graphics for computing intersection of two lines in 2D. It is quite rare to remember the math right away, so some read-up is needed.
+
+Part 2 is a different problem, where we are searching a start condition satisfying some constraints. The most straightforward is to assume that solution for the first few heils will extrapolate for the rest (otherwise there would be no solution).
+
+This leads to a set of linear equations where only rock's position and velocity is unknown and can be solved by solving the set of linear equations. It seems that choosing heils from the beginning and solving for x and y first works well with the input.
+
+## Day 25
+Part 1 is a graph problem and there are various ways to solve this task. The problem is typically called st. like "minimum cut", where you limit to the cut having exactly 3 edges. Fortunately the two "halves" are relatively dense enough that simpler intuitive solutions can be used.
+
+If we start with one part containing all nodes and the other none, there are 0 cross-connections between those and we need to move some node to the smaller half. If we choose a node which has the most connections to that second half, it seems that the input is set so that such a node really belongs to the other half. Repeating the same process until there are exactly 3 connections from all nodes of the first half to the second will split the graph to the required parts. Input does not seem to have nodes connected to the bridge edges repeat so as long as we are selecting nodes with 2+ connections to the other half, this will work OK.
+
+Despite how naive the process is, it takes only a fraction of a second to complete.
+
+Part 2 is just... Press the button!
